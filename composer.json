@@ -1,8 +1,8 @@
 {
-    "name": "htmlburger/carbon-field-YOURFIELDNAME",
-    "description": "Carbon Fields extension, that adds a YOURFIELDNAME field type.",
-    "keywords": ["wordpress", "carbon-field", "carbon-field-YOURFIELDNAME"],
-    "homepage": "http://yourhomepage.example.com",
+    "name": "steffenster/carbon-field-banner",
+    "description": "Carbon Fields extension, that adds a banner field type.",
+    "keywords": ["wordpress", "carbon-field", "carbon-field-banner"],
+    "homepage": "https://konzeptfreun.de",
     "type": "library",
     "license": "GPL-2.0+",
     "authors": [],
