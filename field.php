@@ -5,8 +5,8 @@ use Carbon_Field_Banner\Banner;
 
 define( 'Carbon_Field_Banner\\DIR', __DIR__ );
 
-Carbon_Fields::extend( Banner::class, function( $container ) {
-	return new Banner(
+Carbon_Fields::extend( Banner_Field::class, function( $container ) {
+	return new Banner_Field(
 		$container['arguments']['type'],
 		$container['arguments']['name'],
 		$container['arguments']['label']
