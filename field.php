@@ -1,7 +1,7 @@
 <?php
 
 use Carbon_Fields\Carbon_Fields;
-use Carbon_Field_Banner\Banner;
+use Carbon_Field_Banner\Banner_Field;
 
 define( 'Carbon_Field_Banner\\DIR', __DIR__ );
 
