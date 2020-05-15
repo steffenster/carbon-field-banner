@@ -1,12 +1,5 @@
-/**
- * External dependencies.
- */
-import { registerFieldType } from '@carbon-fields/core';
-
-/**
- * Internal dependencies.
- */
 import './style.scss';
-import Banner from './main';
+import Banner from './banner.js';
+import { registerFieldType } from '@carbon-fields/core';
 
 registerFieldType( 'banner', Banner );

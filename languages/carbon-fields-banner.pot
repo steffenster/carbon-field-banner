@@ -1,0 +1,12 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=utf-8\n"
+"X-Generator: babel-plugin-makepot\n"
+
+#: src/components/color-button/index.js:50
+msgid "Select a color"
+msgstr ""
+
+#: src/utils/api-fetch.js:19
+msgid "An error occured."
+msgstr ""

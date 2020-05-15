@@ -35,6 +35,17 @@ module.exports = {
 				}
 			},
 			{
+				test: /\.css$/i,
+				use: [
+					{
+						loader: 'style-loader'
+					},
+					{
+						loader: 'css-loader',
+					},
+				]
+			},
+			{
 				test: /\.scss$/,
 				use: [
 					MiniCssExtractPlugin.loader,
@@ -49,6 +60,12 @@ module.exports = {
 					},
 					{
 						loader: 'sass-loader'
+					},
+					{
+						loader: 'sass-resources-loader',
+						options: {
+							resources: path.resolve( __dirname, './assets/styles/*.scss' )
+						}
 					}
 				]
 			}

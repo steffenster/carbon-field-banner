@@ -1,0 +1,146 @@
+/* ==========================================================================
+   File
+   ========================================================================== */
+
+.cf-file__banner-inner {
+	position: relative;
+	min-width: 32px;
+	height: 70px;
+	box-sizing: border-box;
+	
+	&:not(.with-image) {
+		border: 1px dashed $wp-color-gray-light-800;
+	}
+
+	&.with-image {
+		.cf-file__banner-browse,
+		.cf-file__banner-remove,
+		.cf-file__banner-edit {
+				display: none;
+		}
+
+		&:hover {
+			.cf-file__banner-remove,
+			.cf-file__banner-edit {
+				display: block;
+			}
+		}
+	}
+
+	&.with-image {
+		.button.cf-file__banner-browse {
+			display: none;
+		}
+	}
+
+	.button.cf-file__banner-browse {
+		display: flex;
+	}
+}
+
+.cf-file__banner-content {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.cf-file__banner-preview {
+	position: relative;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+.cf-file__banner-image {
+	max-height: 70px;
+	width: auto;
+}
+
+.cf-file__name {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 5px;
+	border-top: 1px solid $wp-color-gray-light-800;
+	overflow: hidden;
+	background-color: $wp-color-gray-light-200;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.cf-file__banner-browse {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	height: auto;
+	max-width: 100%;
+	transform: translate(-50%, -50%);
+	
+	.cf-file__content ~ & {
+		margin-bottom: 29px;
+		visibility: hidden;
+		opacity: 0;
+		transition: visibility $transition-base, opacity $transition-base;
+	}
+
+	.cf-file__inner:hover .cf-file__content ~ & {
+		visibility: visible;
+		opacity: 1;
+	}
+}
+
+.wp-core-ui .button {
+	&.cf-file__banner-browse {
+		// display: flex;
+		padding: 0;
+		background: none;
+		border: none;
+	}
+}
+
+.cf-file__banner-remove {
+	position: absolute;
+	top: 15%;
+	right: 50%;
+	transform: translateX(50%);
+	padding: 0;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	transition: opacity $transition-base;
+
+	&:hover {
+		opacity: .8;
+	}
+
+	&::before {
+		border-radius: 50%;
+		background-color: $wp-color-ultra-dark-gray;
+		color: $color-white;
+	}
+}
+.cf-file__banner-edit {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translateX(50%);
+	padding: 0;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
+	transition: opacity $transition-base;
+
+	&:hover {
+		opacity: .8;
+	}
+
+	&::before {
+		border-radius: 50%;
+		background-color: $wp-color-ultra-dark-gray;
+		color: $color-white;
+	}
+}

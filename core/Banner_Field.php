@@ -32,7 +32,8 @@ class Banner_Field extends Field {
 	 */
 	public static function admin_enqueue_scripts() {
 		$root_uri = \Carbon_Fields\Carbon_Fields::directory_to_url( \Carbon_Field_Banner\DIR );
-		$dir      = \Carbon_Field_Banner\DIR . '/languages/';
+		$dir      = \Carbon_Field_Banner\DIR;
+
 		// Enqueue field styles.
 		wp_enqueue_style(
 			'carbon-field-banner',
@@ -45,9 +46,39 @@ class Banner_Field extends Field {
 		wp_enqueue_script(
 			'carbon-field-banner',
 			$root_uri . '/build/bundle.js',
-			array( 'carbon-fields-core' ),
-			fileatime( $dir, '/build/bundle.js' ),
+			array( 'carbon-fields-core', 'wp-components', 'jquery' ),
+			fileatime( $dir . '/build/bundle.js' ),
 			'all'
 		);
+	}
+
+	/**
+	 * Set the field width.
+	 *
+	 * @param  string $type
+	 * @return self   $this
+	 */
+	public function set_type( $type ) {
+		$this->subtype = $type;
+		return $this;
+	}
+
+	/**
+	 * Returns an array that holds the field data, suitable for JSON representation.
+	 *
+	 * @param bool $load  Should the value be loaded from the database or use the value from the current instance.
+	 * @return array
+	 */
+	public function to_json( $load ) {
+		$field_data = parent::to_json( $load );
+
+		$field_data = array_merge(
+			$field_data,
+			array(
+				'subtype' => $this->subtype,
+			)
+		);
+
+		return $field_data;
 	}
 }
