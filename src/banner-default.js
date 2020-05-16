@@ -1,8 +1,6 @@
 /**
  * External dependencies.
  */
-import { Fragment, Component } from '@wordpress/element';
-// import RichTextEditor from 'react-rte/lib/RichTextEditor';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
@@ -13,19 +11,25 @@ import 'react-quill/dist/quill.bubble.css';
 import ColorButton from './components/color-button';
 import File from './components/file';
 
-export const StyleBlock = ( { options } ) => {
+/**
+ * internal WordPress dependencies
+ */
+const { Fragment, Component } = wp.element;
+
+export const StyleBlock = ( { id, options } ) => {
 	return (
 		<style>
-			{ options && options.color && `.cf-banner-preview .ql-container .ql-editor p {color: ${options.color}}` }
-			{ options && options.linkColor && `.cf-banner-preview .ql-container .ql-editor a {color: ${options.linkColor}}` }
-			{ options && options.linkHoverColor && `.cf-banner-preview .ql-container .ql-editor a:hover {color: ${options.linkHoverColor}}` }
-			{ options && options.linkHoverLineColor && `.cf-banner-preview .ql-container .ql-editor p a:hover {border-bottom-color: ${options.linkHoverLineColor}}` }
+			{ options && options.color && `.cf-banner-preview.${id}  .ql-container .ql-editor p {color: ${options.color}}` }
+			{ options && options.linkColor && `.cf-banner-preview.${id}  .ql-container .ql-editor a {color: ${options.linkColor}}` }
+			{ options && options.linkHoverColor && `.cf-banner-preview.${id}  .ql-container .ql-editor a:hover {color: ${options.linkHoverColor}}` }
+			{ options && options.linkHoverLineColor && `.cf-banner-preview.${id}  .ql-container .ql-editor p a:hover {border-bottom-color: ${options.linkHoverLineColor}}` }
 
 		</style>
 	);
 }
 
 export const Preview = ( {
+	id,
 	options,
 	onChangeCol1,
 	onChangeCol2,
@@ -47,7 +51,7 @@ export const Preview = ( {
 	}
 
 	return(
-		<div class="cf-banner-preview cf-banner-wrapper" style={ style }>
+		<div class={ 'cf-banner-preview cf-banner-wrapper ' + id } style={ style }>
 			<div className="cf-banner-outer-col">
 				<div className="cf-banner-image">
 					<File
@@ -162,6 +166,7 @@ export default class Banner_Default extends Component {
 	 */
 	render() {
 		const {
+			id,
 			options,
 			updateValue
         } = this.props;
@@ -184,9 +189,11 @@ export default class Banner_Default extends Component {
 				<div className="cf-banner-fieldset">
 					<h3>Preview:</h3>
 					<StyleBlock
+						id={ id }
 						options={ options }
 					/>
 					<Preview
+						id={ id }
 						options={ options }
 						onChangeCol1={ this.onChangeCol1 }
 						onChangeCol2={ this.onChangeCol2 }

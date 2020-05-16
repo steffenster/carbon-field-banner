@@ -1,15 +1,19 @@
 /**
  * External dependencies.
  */
-import { compose, withState } from '@wordpress/compose';
-import { Fragment, Component } from '@wordpress/element';
-import { merge } from 'lodash';
-
+// import { merge } from 'lodash';
+const { merge } = lodash
 /**
  * Internal dependencies.
  */
 import Banner_Default from './banner-default';
 import Banner_Event from './banner-event';
+
+/**
+ * Internal WordPress dependencies
+ */
+const { compose, withState } = wp.compose;
+const { Fragment, Component } = wp.element;
 
 class Banner extends Component {
 	constructor() {
@@ -31,7 +35,8 @@ class Banner extends Component {
 		const { id, onChange, options, setState } = this.props;
 		const name = e.target.name;
 		const input = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
-		const newOptions = merge( options, { [name]: input });
+		const newOptions = merge( options, { id: id, [name]: input });
+		console.log( {id, newOptions } );
 
 		setState( { [name]: input } );
 		onChange( id, JSON.stringify( newOptions ) );
@@ -52,6 +57,7 @@ class Banner extends Component {
 				{
 					field && field.subtype === "default" &&
 					<Banner_Default
+						id={ id }
 						options={ options ? options : {} }
 						updateValue={ this.updateValue }
 						{ ...props }
@@ -60,6 +66,7 @@ class Banner extends Component {
 				{
 					field && field.subtype === "event" &&
 					<Banner_Event
+						id={ id }
 						options={ options ? options : {} }
 						updateValue={ this.updateValue }
 						{ ...props }

@@ -1,12 +1,12 @@
 /**
- * External dependencies.
- */
-import { Fragment, Component } from '@wordpress/element';
-
-/**
  * Internal dependencies.
  */
 import ColorButton from './components/color-button';
+
+/**
+ * Internal WordPress depedencies
+ */
+const { Fragment, Component } = wp.element;
 
 export default class Banner_Event extends Component {
 

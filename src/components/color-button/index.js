@@ -1,14 +1,13 @@
 /**
- * External dependencies.
- */
-import { Component } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
-
-/**
  * Internal dependencies.
  */
-// import './style.scss';
 import Picker from './picker';
+
+/**
+ * internal WordPress dependencies
+ */
+const { Component } = wp.element;
+const { __ } = wp.i18n;
 
 class ColorButton extends Component {
 	/**
@@ -47,7 +46,7 @@ class ColorButton extends Component {
 					<span className="cf-color__preview" style={ { backgroundColor: value } }></span>
 
 					<span className="cf-color__toggle-text">
-						{ label ? label : __( 'Select a color', 'carbon-fields-ui' ) }
+						{ label ? label : __( 'Select a color' ) }
 					</span>
 				</button>
 

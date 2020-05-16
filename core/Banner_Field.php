@@ -46,8 +46,15 @@ class Banner_Field extends Field {
 		wp_enqueue_script(
 			'carbon-field-banner',
 			$root_uri . '/build/bundle.js',
-			array( 'carbon-fields-core', 'wp-components', 'jquery' ),
-			fileatime( $dir . '/build/bundle.js' ),
+			array( 
+				'carbon-fields-core',
+				'wp-compose',
+				'wp-element',
+				'wp-i18n',
+				'jquery',
+				'lodash',
+			),
+			fileatime( $dir . '/build/bundle.min.js' ),
 			'all'
 		);
 	}

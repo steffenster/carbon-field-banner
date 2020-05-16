@@ -1,9 +1,13 @@
 /**
  * External dependencies.
  */
-import { Component } from '@wordpress/element';
 import SketchPicker from 'react-color/lib/Sketch';
 import onClickOutside from 'react-onclickoutside';
+
+/**
+ * internal WordPress dependencies
+ */
+const { Component } = wp.element;
 
 class Picker extends Component {
 	/**

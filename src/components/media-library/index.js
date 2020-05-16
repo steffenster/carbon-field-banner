@@ -1,7 +1,6 @@
 /**
  * External dependencies.
  */
-import { compose } from '@wordpress/compose';
 import { withEffects, toProps } from 'refract-callbag';
 import {
 	map,
@@ -9,6 +8,11 @@ import {
 	merge
 } from 'callbag-basics';
 import of from 'callbag-of';
+
+/**
+ * internal WordPress dependencies
+ */
+const { compose } = wp.compose;
 
 function MediaLibrary( { children, openMediaBrowser } ) {
 	return children( { openMediaBrowser } );

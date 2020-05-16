@@ -1,15 +1,19 @@
 /**
  * External dependencies.
  */
-import { Fragment, Component } from '@wordpress/element';
-import { get } from 'lodash';
-
+// import { get } from 'lodash';
+const { get } = lodash;
 /**
  * Internal dependencies.
  */
 import './style.scss';
 import MediaLibrary from '../../components/media-library';
 import apiFetch from '../../utils/api-fetch.js';
+
+/**
+ * internal WordPress dependencies
+ */
+const { Fragment, Component } = wp.element;
 
 class FileField extends Component {
 	/**

@@ -3,7 +3,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "X-Generator: babel-plugin-makepot\n"
 
-#: src/components/color-button/index.js:50
+#: src/components/color-button/index.js:49
 msgid "Select a color"
 msgstr ""
 
