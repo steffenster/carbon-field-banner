@@ -6,6 +6,13 @@ use Carbon_Fields\Field\Field;
 
 class Banner_Field extends Field {
 	/**
+	 * subtype to set a type templates
+	 *
+	 * @var string
+	 */
+	public $subtype = 'default';
+
+	/**
 	 * Prepare the field type for use.
 	 * Called once per field type when activated.
 	 *
