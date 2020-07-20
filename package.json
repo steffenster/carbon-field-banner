@@ -40,7 +40,7 @@
     "callbag-basics": "^3.2.0",
     "callbag-of": "^2.0.0",
     "classnames": "^2.2.6",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "react": "^16.6.3",
     "react-color": "^2.18.1",
     "react-dom": "^16.6.3",
