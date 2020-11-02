@@ -78,16 +78,10 @@ div.cf-complex__groups {
   height: 70px;
   background-color: #dcf4fc;
   color: #193440; }
-  .cf-banner-wrapper input::-webkit-input-placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #193440; }
   .cf-banner-wrapper input::-moz-placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #193440; }
   .cf-banner-wrapper input:-ms-input-placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #193440; }
-  .cf-banner-wrapper input::-ms-input-placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #193440; }
   .cf-banner-wrapper input::placeholder {

@@ -32,26 +32,26 @@ class FileField extends Component {
 	 */
 	componentDidMount() {
 		const { value, value_type } = this.props;
-		if ( value ) {
+		if (value) {
 			apiFetch(
-				`${ window.wpApiSettings.root }carbon-fields/v1/attachment/?type=${ value_type }&value=${ value }`,
+				`${window.wpApiSettings.root}carbon-fields/v1/attachment/?type=${value_type}&value=${value}`,
 				'get'
-				).then( this.handleFileDataChange );
+			).then(this.handleFileDataChange);
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const { value_type } = this.props;
+		if (!this.state.data[value_type] && nextProps.value !== this.state.data[value_type]) {
+			this.setState(() => { return { selectedTab: nextProps.selectedTab } })
+			if (nextProps.value) {
+				apiFetch(
+					`${window.wpApiSettings.root}carbon-fields/v1/attachment/?type=${value_type}&value=${nextProps.value}`,
+					'get'
+				).then(this.handleFileDataChange);
 			}
 		}
-		
-		componentWillReceiveProps(nextProps) {
-			const { value_type } = this.props;
-			if ( ! this.state.data[value_type] && nextProps.value !== this.state.data[value_type] ) {
-				this.setState(() => { return {selectedTab: nextProps.selectedTab} })
-				if ( nextProps.value ) {
-					apiFetch(
-						`${ window.wpApiSettings.root }carbon-fields/v1/attachment/?type=${ value_type }&value=${ nextProps.value }`,
-						'get'
-					).then( this.handleFileDataChange );
-				}
-			}
-		}
+	}
 
 	/**
 	 * Returns an URL to the attachment's thumbnail.
@@ -60,16 +60,17 @@ class FileField extends Component {
 	 */
 	getThumb() {
 		const { data } = this.state;
+		console.log({ data });
 
-		if ( data.sizes ) {
+		if (data.sizes) {
 			const size = data.sizes.thumbnail || data.sizes.full;
 
-			if ( size ) {
+			if (size) {
 				return size.url;
 			}
 		}
 
-		if ( data.thumb_url ) {
+		if (data.thumb_url) {
 			return data.thumb_url;
 		}
 
@@ -93,8 +94,8 @@ class FileField extends Component {
 	 * @param  {Object} data
 	 * @return {void}
 	 */
-	handleFileDataChange = ( data ) => {
-		this.setState( { data } );
+	handleFileDataChange = (data) => {
+		this.setState({ data });
 	}
 
 	/**
@@ -105,9 +106,9 @@ class FileField extends Component {
 	handleClear = () => {
 		const { id, onChange } = this.props;
 
-		onChange( id, '' );
+		onChange(id, '');
 
-		this.handleFileDataChange( {} );
+		this.handleFileDataChange({});
 	}
 
 	/**
@@ -116,16 +117,16 @@ class FileField extends Component {
 	 * @param  {Object} files
 	 * @return {void}
 	 */
-	handleSelect = ( files ) => {
+	handleSelect = (files) => {
 		const {
 			onChange,
 			value_type
 		} = this.props;
 
-		const [ file ] = files;
+		const [file] = files;
 
-		this.handleFileDataChange( file );
-		onChange( get( file, value_type, file.id ) );
+		this.handleFileDataChange(file);
+		onChange(get(file, value_type, file.id));
 
 	}
 
@@ -146,34 +147,34 @@ class FileField extends Component {
 
 		return (
 			<MediaLibrary
-				onSelect={ this.handleSelect }
-				multiple={ false }
-				title={ mediaLibraryTitle }
-				buttonLabel={ 'Insert Media' }
-				typeFilter={ type_filter }
+				onSelect={this.handleSelect}
+				multiple={false}
+				title={mediaLibraryTitle}
+				buttonLabel={'Insert Media'}
+				typeFilter={type_filter}
 			>
 				{
-					( { openMediaBrowser } ) => {
-						return <div className={ value && !! data.id ? 'cf-file__banner-inner with-image' : 'cf-file__banner-inner' }>
+					({ openMediaBrowser }) => {
+						return <div className={value && !!data.id ? 'cf-file__banner-inner with-image' : 'cf-file__banner-inner'}>
 							<div className="cf-file__banner-content">
-								{ ( value && !! data.id ) && (
+								{(value && !!data.id) && (
 									<Fragment>
 										<div className="cf-file__banner-preview">
-											<img src={ this.getThumb() } className="cf-file__banner-image" />
-											<button type="button" className="cf-file__banner-remove dashicons-before dashicons-no-alt" onClick={ this.handleClear }></button>
-											<button type="button" className="cf-file__banner-edit dashicons-before dashicons-edit" onClick={openMediaBrowser }></button>
+											<img src={this.getThumb()} className="cf-file__banner-image" />
+											<button type="button" className="cf-file__banner-remove dashicons-before dashicons-no-alt" onClick={this.handleClear}></button>
+											<button type="button" className="cf-file__banner-edit dashicons-before dashicons-edit" onClick={openMediaBrowser}></button>
 										</div>
 										{
 											displayFileName &&
-											<span className="cf-file__name" title={ this.getFileName() }>
-												{ this.getFileName() }
+											<span className="cf-file__name" title={this.getFileName()}>
+												{this.getFileName()}
 											</span>
 										}
 									</Fragment>
-								) }
+								)}
 
-								<button type="button" className="button cf-file__banner-browse" onClick={ openMediaBrowser }>
-									{ buttonLabel }
+								<button type="button" className="button cf-file__banner-browse" onClick={openMediaBrowser}>
+									{buttonLabel}
 								</button>
 							</div>
 						</div>;

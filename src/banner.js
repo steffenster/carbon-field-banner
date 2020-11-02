@@ -36,7 +36,7 @@ class Banner extends Component {
 		const name = e.target.name;
 		const input = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 		const newOptions = merge( options, { id: id, [name]: input });
-		console.log( {id, newOptions } );
+		console.log( { newOptions } );
 
 		setState( { [name]: input } );
 		onChange( id, JSON.stringify( newOptions ) );
