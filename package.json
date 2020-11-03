@@ -39,7 +39,6 @@
     "@babel/runtime": "^7.1.5",
     "callbag-basics": "^3.2.0",
     "callbag-of": "^2.0.0",
-    "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "react": "^16.6.3",
     "react-color": "^2.18.1",
