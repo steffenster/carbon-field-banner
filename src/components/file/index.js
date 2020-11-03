@@ -60,7 +60,6 @@ class FileField extends Component {
 	 */
 	getThumb() {
 		const { data } = this.state;
-		console.log({ data });
 
 		if (data.sizes) {
 			const size = data.sizes.thumbnail || data.sizes.full;

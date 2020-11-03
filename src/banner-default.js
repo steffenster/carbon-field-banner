@@ -19,12 +19,11 @@ const { Fragment, Component } = wp.element;
 export const StyleBlock = ({ id, options }) => {
 	return (
 		<style>
-			{ console.log({ options })}
 			{ options && options.color && `.cf-banner-preview.${id} .ql-container .ql-editor p {color: ${options.color}}`}
 			{ options && options.linkColor && `.cf-banner-preview.${id} .ql-container .ql-editor a {color: ${options.linkColor}}`}
-			{ options && options.linkColor && `.cf-banner-preview.${id} .ql-container .ql-editor a {background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.908.98L9.78%205.223%204.908%209.466%22%20stroke%3D%22%23${options.linkColor.replace('#','')}%22%2F%3E%3C%2Fsvg%3E)} `}
+			{ options && options.linkColor && `.cf-banner-preview.${id} .ql-container .ql-editor a {background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.908.98L9.78%205.223%204.908%209.466%22%20stroke%3D%22%23${options.linkColor.replace('#','')}%22%2F%3E%3C%2Fsvg%3E)}`}
 			{ options && options.linkHoverColor && `.cf-banner-preview.${id} .ql-container .ql-editor a:hover {color: ${options.linkHoverColor}}`}
-			{ options && options.linkHoverColor && `.cf-banner-preview.${id} .ql-container .ql-editor a:hover {background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.908.98L9.78%205.223%204.908%209.466%22%20stroke%3D%22%23${options.linkHoverColor.replace('#','')}%22%2F%3E%3C%2Fsvg%3E)} `}
+			{ options && options.linkHoverColor && `.cf-banner-preview.${id} .ql-container .ql-editor a:hover {background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2211%22%20height%3D%2211%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M4.908.98L9.78%205.223%204.908%209.466%22%20stroke%3D%22%23${options.linkHoverColor.replace('#','')}%22%2F%3E%3C%2Fsvg%3E)}`}
 			{ options && options.linkHoverLineColor && `.cf-banner-preview.${id} .ql-container .ql-editor p a:hover {border-bottom-color: ${options.linkHoverLineColor}}`}
 
 		</style>
@@ -53,8 +52,12 @@ export const Preview = ({
 		// color: options.color ? options.color : null
 	}
 
+	const textShadowClass = () => {
+		return options.textShadow === true ? ' has-text-shadow' : '';
+	}
+
 	return (
-		<div class={'cf-banner-preview cf-banner-wrapper ' + id} style={style}>
+		<div class={'cf-banner-preview cf-banner-wrapper ' + id + textShadowClass()} style={style}>
 			<div className="cf-banner-outer-col">
 				<div className="cf-banner-image">
 					<File
@@ -259,16 +262,27 @@ export default class Banner_Default extends Component {
 						onChange={(color) => this.updateColor('linkColor', color)}
 					/>
 					<ColorButton
-						label="hoverd link color"
+						label="Hovered link color"
 						value={options.linkHoverColor ? options.linkHoverColor : (options.linkColor ? options.linkColor : '#193440')}
 						onChange={(color) => this.updateColor('linkHoverColor', color)}
 					/>
 					<ColorButton
-						label="hovered link line color"
+						label="Hovered link line color"
 						value={options.linkHoverLineColor ? options.linkHoverLineColor : '#86C274'}
 						onChange={(color) => this.updateColor('linkHoverLineColor', color)}
 					/>
+					<label>
+						<input
+							type="checkbox"
+							name="textShadow"
+							checked={options.textShadow}
+							value={options.textShadow}
+							onChange={updateValue}
+						/>
+						<span>Text shadow</span>
+					</label>
 				</div>
+
 				<div className="cf-banner-fieldset">
 					<h3>Columns</h3>
 					<div className="button-group">
