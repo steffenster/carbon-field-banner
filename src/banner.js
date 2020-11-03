@@ -39,7 +39,6 @@ class Banner extends Component {
 
 		setState( { [name]: input } );
 		onChange( id, JSON.stringify( newOptions ) );
-		console.log({ name, input });
 	}
 
 	render() {
