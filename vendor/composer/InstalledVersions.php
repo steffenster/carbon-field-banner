@@ -19,7 +19,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '4c04f4bacba4da7a0db8bb566956cc51989095ad',
+    'reference' => '037426e0f152c19fb04e5ad4176ba62a974b1b52',
     'name' => 'steffenster/carbon-field-banner',
   ),
   'versions' => 
@@ -31,7 +31,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '4c04f4bacba4da7a0db8bb566956cc51989095ad',
+      'reference' => '037426e0f152c19fb04e5ad4176ba62a974b1b52',
     ),
   ),
 );
