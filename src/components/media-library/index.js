@@ -2,21 +2,21 @@
  * External dependencies.
  */
 // import { withEffects, toProps } from 'refract-callbag';
-import { withEffects, toProps } from 'refract-rxjs'
-import {
+const { withEffects, toProps } = require('refract-rxjs');
+const {
 	map,
 	pipe,
 	merge
-} from 'callbag-basics';
-import of from 'callbag-of';
+} = require('callbag-basics');
+const of = require('callbag-of');
 
 /**
  * internal WordPress dependencies
  */
 import { compose } from '@wordpress/compose';
 
-function MediaLibrary( { children, openMediaBrowser } ) {
-	return children( { openMediaBrowser } );
+function MediaLibrary({ children, openMediaBrowser }) {
+	return children({ openMediaBrowser });
 }
 
 /**
@@ -25,39 +25,39 @@ function MediaLibrary( { children, openMediaBrowser } ) {
  * @param  {Object} component
  * @return {Object}
  */
-function aperture( component ) {
+function aperture(component) {
 	const mount$ = component.mount;
 	const unmount$ = component.unmount;
-	const [ openMediaBrowserEvent$, openMediaBrowser ] = component.useEvent( 'openMediaBrowserEvent' );
+	const [openMediaBrowserEvent$, openMediaBrowser] = component.useEvent('openMediaBrowserEvent');
 
 	return merge(
 		pipe(
 			mount$,
-			map( () => ( {
+			map(() => ({
 				type: 'INIT'
-			} ) )
+			}))
 		),
 
 		pipe(
 			unmount$,
-			map( () => ( {
+			map(() => ({
 				type: 'DESTROY'
-			} ) )
+			}))
 		),
 
 		pipe(
-			of( {
+			of({
 				openMediaBrowser
-			} ),
-			map( toProps )
+			}),
+			map(toProps)
 		),
 
 		pipe(
 			openMediaBrowserEvent$,
-			map( ( payload ) => ( {
+			map((payload) => ({
 				type: 'OPEN',
 				payload
-			} ) )
+			}))
 		)
 	);
 }
@@ -68,15 +68,15 @@ function aperture( component ) {
  * @param  {Object} props
  * @return {Function}
  */
-function handler( props ) {
+function handler(props) {
 	let mediaBrowser = null;
 
-	return function( effect ) {
-		switch ( effect.type ) {
+	return function (effect) {
+		switch (effect.type) {
 			case 'INIT':
 				const { onSelect, typeFilter } = props;
 
-				mediaBrowser = wp.media( {
+				mediaBrowser = wp.media({
 					title: props.title,
 					library: {
 						type: typeFilter
@@ -85,19 +85,19 @@ function handler( props ) {
 						text: props.buttonLabel
 					},
 					multiple: props.multiple
-				} );
+				});
 
-				mediaBrowser.on( 'select', () => {
+				mediaBrowser.on('select', () => {
 					const file = mediaBrowser.state()
-						.get( 'selection' )
+						.get('selection')
 						.toJSON();
 
-					onSelect( file );
-				} );
+					onSelect(file);
+				});
 
 				break;
 			case 'OPEN':
-				if ( mediaBrowser ) {
+				if (mediaBrowser) {
 					mediaBrowser.open();
 				}
 
@@ -110,8 +110,8 @@ function handler( props ) {
 	};
 }
 
-const applyWithEffects = withEffects( aperture, { handler } );
+const applyWithEffects = withEffects(aperture, { handler });
 
 export default compose(
 	applyWithEffects
-)( MediaLibrary );
+)(MediaLibrary);
