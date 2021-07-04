@@ -1,10 +1,11 @@
 /**
  * External dependencies.
  */
-const path = require( 'path' );
-const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
-const TerserPlugin = require( 'terser-webpack-plugin' );
+const path = require('path');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 /**
  * Indicates if we're running the build process in production mode.
@@ -14,11 +15,12 @@ const TerserPlugin = require( 'terser-webpack-plugin' );
 const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
+	mode: 'development',
 	entry: {
 		bundle: './src/index.js'
 	},
 	output: {
-		path: path.resolve( __dirname, 'build' ),
+		path: path.resolve(__dirname, 'build'),
 		filename: isProduction ? '[name].min.js' : '[name].js'
 	},
 	module: {
@@ -27,10 +29,7 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				use: {
-					loader: 'babel-loader',
-					options: {
-						cacheDirectory: true
-					}
+					loader: 'babel-loader'
 				}
 			},
 			{
@@ -49,13 +48,7 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					{
-						loader: 'css-loader',
-						options: {
-							importLoaders: 2
-						}
-					},
-					{
-						loader: 'postcss-loader'
+						loader: 'css-loader'
 					},
 					{
 						loader: 'sass-loader'
@@ -63,7 +56,7 @@ module.exports = {
 					{
 						loader: 'sass-resources-loader',
 						options: {
-							resources: path.resolve( __dirname, './assets/styles/*.scss' )
+							resources: path.resolve(__dirname, './assets/styles/*.scss')
 						}
 					}
 				]
@@ -72,32 +65,26 @@ module.exports = {
 	},
 	externals: [
 		'classnames',
-	].reduce( ( memo, name ) => {
-		memo[ name ] = `cf.vendor['${ name }']`;
+	].reduce((memo, name) => {
+		memo[name] = `cf.vendor['${name}']`;
 
 		return memo;
 	}, {
 		'@carbon-fields/core': 'cf.core'
-	} ),
+	}),
 	plugins: [
-		new MiniCssExtractPlugin( {
+		new MiniCssExtractPlugin({
 			filename: isProduction ? '[name].min.css' : '[name].css'
-		} ),
+		}),
 
 		...(
 			isProduction
-			? [
-				new OptimizeCssAssetsPlugin( {
-					cssProcessorPluginOptions: {
-						preset: [ 'default', { discardComments: { removeAll: true } } ]
-					}
-				} ),
-				new TerserPlugin( {
-					cache: true,
-					parallel: true
-				} )
-			]
-			: []
+				? [
+					new DependencyExtractionWebpackPlugin(),
+					new CssMinimizerPlugin(),
+					new TerserPlugin()
+				]
+				: []
 		)
 	],
 	stats: {

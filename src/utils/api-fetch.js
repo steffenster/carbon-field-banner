@@ -1,7 +1,7 @@
 /**
  * Internal WordPress dependencies.
  */
-const { __ } = wp.i18n;
+import { __ } from "@wordpress/i18n";
 
 export default ( url, method, data = null ) => {
 	return new Promise( ( resolve, reject ) => {

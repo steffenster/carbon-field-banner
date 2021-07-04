@@ -1,8 +1,7 @@
 /**
  * External dependencies.
  */
-// import { merge } from 'lodash';
-const { merge } = lodash
+import { merge } from 'lodash';
 /**
  * Internal dependencies.
  */
@@ -12,8 +11,8 @@ import Banner_Event from './banner-event';
 /**
  * Internal WordPress dependencies
  */
-const { compose, withState } = wp.compose;
-const { Fragment, Component } = wp.element;
+import { compose, withState } from '@wordpress/compose';
+import { Component, Fragment } from '@wordpress/element';
 
 class Banner extends Component {
 	constructor() {

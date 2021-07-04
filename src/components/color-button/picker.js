@@ -2,7 +2,7 @@
  * External dependencies.
  */
 import SketchPicker from 'react-color/lib/Sketch';
-import onClickOutside from 'react-onclickoutside';
+// import onClickOutside from 'react-onclickoutside';
 
 /**
  * internal WordPress dependencies
@@ -43,4 +43,4 @@ class Picker extends Component {
 	}
 }
 
-export default onClickOutside( Picker );
+export default Picker;

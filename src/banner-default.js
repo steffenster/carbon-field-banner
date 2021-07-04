@@ -14,7 +14,7 @@ import File from './components/file';
 /**
  * internal WordPress dependencies
  */
-const { Fragment, Component } = wp.element;
+import { Fragment, Component } from '@wordpress/element';
 
 export const StyleBlock = ( { id, options } ) => {
 	return (

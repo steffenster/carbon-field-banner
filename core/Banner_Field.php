@@ -44,7 +44,7 @@ class Banner_Field extends Field {
 		// Enqueue field styles.
 		wp_enqueue_style(
 			'carbon-field-banner',
-			$root_uri . '/build/bundle.css',
+			\Carbon_Field_Banner\URL . 'build/bundle.css',
 			fileatime( $dir . '/build/bundle.css' ),
 			'all'
 		);
@@ -52,9 +52,11 @@ class Banner_Field extends Field {
 		// Enqueue field scripts.
 		wp_enqueue_script(
 			'carbon-field-banner',
-			$root_uri . '/build/bundle.js',
-			array( 
+			\Carbon_Field_Banner\URL . 'build/bundle.js',
+			array(
 				'carbon-fields-core',
+				'react',
+				'react-dom',
 				'wp-compose',
 				'wp-element',
 				'wp-i18n',
@@ -62,7 +64,7 @@ class Banner_Field extends Field {
 				'lodash',
 			),
 			fileatime( $dir . '/build/bundle.min.js' ),
-			'all'
+			true
 		);
 	}
 

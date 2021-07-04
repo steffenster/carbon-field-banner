@@ -1,8 +1,7 @@
 /**
  * External dependencies.
  */
-// import { get } from 'lodash';
-const { get } = lodash;
+import { get } from 'lodash';
 /**
  * Internal dependencies.
  */
@@ -13,7 +12,7 @@ import apiFetch from '../../utils/api-fetch.js';
 /**
  * internal WordPress dependencies
  */
-const { Fragment, Component } = wp.element;
+import { Fragment, Component } from '@wordpress/element';
 
 class FileField extends Component {
 	/**

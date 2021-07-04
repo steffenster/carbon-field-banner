@@ -6,7 +6,7 @@ import ColorButton from './components/color-button';
 /**
  * Internal WordPress depedencies
  */
-const { Fragment, Component } = wp.element;
+import { Fragment, Component } from '@wordpress/element';
 
 export default class Banner_Event extends Component {
 

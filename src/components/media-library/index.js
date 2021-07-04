@@ -12,7 +12,7 @@ import of from 'callbag-of';
 /**
  * internal WordPress dependencies
  */
-const { compose } = wp.compose;
+import { compose } from '@wordpress/compose';
 
 function MediaLibrary( { children, openMediaBrowser } ) {
 	return children( { openMediaBrowser } );
