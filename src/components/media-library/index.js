@@ -1,7 +1,8 @@
 /**
  * External dependencies.
  */
-import { withEffects, toProps } from 'refract-callbag';
+// import { withEffects, toProps } from 'refract-callbag';
+import { withEffects, toProps } from 'refract-rxjs'
 import {
 	map,
 	pipe,
