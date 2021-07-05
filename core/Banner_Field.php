@@ -52,7 +52,7 @@ class Banner_Field extends Field {
 		// Enqueue field scripts.
 		wp_enqueue_script(
 			'carbon-field-banner',
-			\Carbon_Field_Banner\URL . 'build/bundle.js',
+			dirname( dirname( __FILE__ ) ) . '/build/bundle.js',
 			array(
 				'carbon-fields-core',
 				'react',

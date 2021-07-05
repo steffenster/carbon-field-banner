@@ -63,15 +63,9 @@ module.exports = {
 			}
 		]
 	},
-	externals: [
-		'classnames',
-	].reduce((memo, name) => {
-		memo[name] = `cf.vendor['${name}']`;
-
-		return memo;
-	}, {
+	externals: {
 		'@carbon-fields/core': 'cf.core'
-	}),
+	},
 	plugins: [
 		new MiniCssExtractPlugin({
 			filename: isProduction ? '[name].min.css' : '[name].css'
