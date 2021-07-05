@@ -43,15 +43,15 @@ class Banner_Field extends Field {
 		// Enqueue field styles.
 		wp_enqueue_style(
 			'carbon-field-banner',
-			Carbon_Field_Banner\URL . 'build/bundle.css',
-			fileatime( \Carbon_Field_Banner\DIR . 'build/bundle.css' ),
+			\Carbon_Field_Banner\URL . 'build/bundle.min.css',
+			fileatime( \Carbon_Field_Banner\DIR . 'build/bundle.min.css' ),
 			'all'
 		);
 
 		// Enqueue field scripts.
 		wp_enqueue_script(
 			'carbon-field-banner',
-			Carbon_Field_Banner\URL . 'build/bundle.js',
+			\Carbon_Field_Banner\URL . 'build/bundle.min.js',
 			array(
 				'carbon-fields-core',
 				'react',

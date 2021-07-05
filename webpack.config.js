@@ -64,7 +64,9 @@ module.exports = {
 		]
 	},
 	externals: {
-		'@carbon-fields/core': 'cf.core'
+		'@carbon-fields/core': 'cf.core',
+		'refract-callbag': [ 'cf', 'vendor', 'refract-callbag' ],
+		'callbag-basics': [ 'cf', 'vendor', 'callbag-basics' ],
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
