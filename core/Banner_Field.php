@@ -44,15 +44,15 @@ class Banner_Field extends Field {
 		// Enqueue field styles.
 		wp_enqueue_style(
 			'carbon-field-banner',
-			\Carbon_Field_Banner\URL . 'build/bundle.css',
-			fileatime( $dir . '/build/bundle.css' ),
+			plugin_dir_url( __FILE__ ) . 'build/bundle.css',
+			fileatime( plugin_dir_path( __FILE__ ) . 'build/bundle.css' ),
 			'all'
 		);
 
 		// Enqueue field scripts.
 		wp_enqueue_script(
 			'carbon-field-banner',
-			dirname( dirname( __FILE__ ) ) . '/build/bundle.js',
+			plugin_dir_url( __FILE__ ) . 'build/bundle.js',
 			array(
 				'carbon-fields-core',
 				'react',
@@ -63,7 +63,7 @@ class Banner_Field extends Field {
 				'jquery',
 				'lodash',
 			),
-			fileatime( $dir . '/build/bundle.min.js' ),
+			fileatime( plugin_dir_path( __FILE__ ) . '/build/bundle.min.js' ),
 			true
 		);
 	}
